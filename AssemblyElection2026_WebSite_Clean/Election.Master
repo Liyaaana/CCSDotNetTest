@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+    CodeFile="Election.master.cs"
+    Inherits="Election" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- PAGE CONTENT GOES HERE -->
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        <!-- MENU -->
+        <asp:Menu ID="Menu1" runat="server"
+            BackColor="#B5C7DE" 
+    DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="Medium" 
+    ForeColor="#284E98" Height="188px" StaticSubMenuIndent="10px" 
+    style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; color: #000000; background-color: #FFCC00; font-style: italic;" 
+    Width="263px" onmenuitemclick="Menu1_MenuItemClick" Font-Bold="True">
+    <StaticSelectedStyle BackColor="#507CD1" />
+    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+    <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+    <DynamicMenuStyle BackColor="#B5C7DE" />
+    <DynamicSelectedStyle BackColor="#507CD1" />
+    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+    <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+
+            <Items>
+                <asp:MenuItem Text="---- Elections ----" />
+                <asp:MenuItem NavigateUrl="~/Bug.aspx" Text="Bug" />
+                <asp:MenuItem NavigateUrl="~/LeadStatus.aspx" Text="Lead And Status Update" />
+                <asp:MenuItem NavigateUrl="~/Onair.aspx" Text="On Air Candidates" />
+                <asp:MenuItem NavigateUrl="~/VIP_Onair.aspx" Text="VIP On Air" />
+
+                <asp:MenuItem Text="Add Details">
+                    <asp:MenuItem NavigateUrl="~/AddStates.aspx" Text="Add States" />
+                    <asp:MenuItem NavigateUrl="~/AddDistricts.aspx" Text="Add Districts" />
+                    <asp:MenuItem NavigateUrl="~/PartyMaster.aspx" Text="Add party" />
+                    <asp:MenuItem NavigateUrl="~/Constituency_insertion.aspx" Text="Constituency Name" />
+                    <asp:MenuItem NavigateUrl="~/DistrictConstituencyVote.aspx" Text="DistrictConstituencyVote" />
+                    <asp:MenuItem NavigateUrl="~/Candidate_insertion.aspx" Text="Candidate Name" />
+                    <asp:MenuItem NavigateUrl="~/AddPreviousYearSeats.aspx" Text="Add PreviousYearSeats" />
+                    <asp:MenuItem NavigateUrl="~/AddParty.aspx" Text="Add Bug Party" />
+                </asp:MenuItem>
+            </Items>
+            <StaticItemTemplate>
+                <%# Eval("Text") %>
+            </StaticItemTemplate>
+        </asp:Menu>
+
+    </form>
+</body>
+</html>
+
