@@ -99,19 +99,50 @@
     {
         font-size: xx-large;
     }
+        .auto-style1 {
+            height: 22px;
+            width: 553px;
+        }
+        .auto-style2 {
+            width: 553px;
+        }
+        .auto-style3 {
+            width: 553px;
+            height: 42px;
+        }
+        .auto-style4 {
+            width: 553px;
+            height: 25px;
+        }
+        .auto-style5 {
+            width: 553px;
+            height: 54px;
+        }
+        .auto-style6 {
+            width: 553px;
+            height: 23px;
+        }
+        .auto-style7 {
+            font-size: large;
+        }
+        .auto-style8 {
+            height: 42px;
+            font-size: x-large;
+            font-weight: bold;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="style1">
     <tr style="height:100px;">
-        <td class="style5">
+        <td class="auto-style1">
             </td>
                    
              <td  colspan="2" class="style1" style="font-size: 5px; font-weight: bold;">
             <br />
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
                      class="style35">&nbsp;&nbsp;</span><span class="style22">&nbsp;<span 
-                     class="style34">Add Previous Year Seats</span></span><br />
+                     class="style34">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Add Previous Year Seats</span></span><br />
             <br />
         </td>
             
@@ -123,10 +154,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style6">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            &nbsp;</td>
-        <td class="style27">
+        <td class="auto-style2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </td>
+        <td class="auto-style7">
             &nbsp;</td>
         <td colspan="1" rowspan="1">
             &nbsp;</td>
@@ -136,11 +166,10 @@
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style14">
-            </td>
-        <td class="style24">
-            State&nbsp;&nbsp;&nbsp;
-        </td>
+        <td class="auto-style3">
+            &nbsp;&nbsp;</td>
+        <td class="auto-style8">
+            State&nbsp;&nbsp;</td>
         <td class="style16">
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
                 onselectedindexchanged="DropDownList1_SelectedIndexChanged" Height="29px" 
@@ -153,9 +182,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style14">
+        <td class="auto-style3">
             </td>
-        <td class="style24">
+        <td class="auto-style8">
             District&nbsp;&nbsp;&nbsp;
         </td>
         <td class="style16">
@@ -170,9 +199,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style7">
+        <td class="auto-style4">
             </td>
-        <td class="style25">
+        <td class="style9">
             &nbsp;</td>
         <td class="style9">
             </td>
@@ -182,13 +211,13 @@
             </td>
     </tr>
     <tr>
-        <td class="style10">
+        <td class="auto-style5">
             &nbsp;</td>
-        <td class="style26">
+        <td class="style12">
             &nbsp;</td>
         <td class="style12">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-                DataKeyNames="id" ShowFooter="True" Height="266px" Width="511px" 
+                DataKeyNames="SeatId" ShowFooter="True" Height="266px" Width="511px" 
                 style="font-weight: 700; background-color: #CCCCCC" >
                 <Columns>
                     <asp:BoundField DataField="partyname" HeaderText="Party Name" >
@@ -222,9 +251,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style6">
+        <td class="auto-style2">
             &nbsp;</td>
-        <td class="style23">
+        <td>
             &nbsp;</td>
         <td>
             &nbsp;</td>
@@ -234,9 +263,9 @@
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style6">
+        <td class="auto-style2">
             </td>
-        <td class="style23">
+        <td>
             </td>
         <td>
             &nbsp;</td>
@@ -246,9 +275,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style31">
+        <td class="auto-style6">
             </td>
-        <td class="style32">
+        <td class="style33">
             </td>
         <td class="style33">
             </td>
@@ -258,9 +287,9 @@
             </td>
     </tr>
     <tr>
-        <td class="style6">
+        <td class="auto-style2">
             &nbsp;</td>
-        <td class="style23">
+        <td>
             &nbsp;</td>
         <td>
             &nbsp;</td>

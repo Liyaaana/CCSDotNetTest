@@ -1,0 +1,77 @@
+﻿@model Hospital.Utilities.PagedResult<Hospital.ViewModels.TimingViewModel>
+
+@{
+    ViewData["Title"] = "Doctor Timings";
+}
+
+<h2>Doctor Timings</h2>
+
+<p>
+    <a asp-action="AddTiming" class="btn btn-primary">Add New Timing</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Morning Shift</th>
+            <th>Afternoon Shift</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Doctor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Data != null && Model.Data.Any())
+        {
+            foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.MorningShiftStartTime - @item.MorningShiftEndTime</td>
+                    <td>@item.AfternoonShiftStartTime - @item.AfternoonShiftEndTime</td>
+                    <td>@item.Duration mins</td>
+                    <td>@item.Status</td>
+                    <!-- Updated from @item.DoctorName to @item.DoctorName -->
+                    <td>@item.DoctorName</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No records found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        @if (Model.PageNumber > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index"
+                   asp-route-pageNumber="@(Model.PageNumber - 1)"
+                   asp-route-pageSize="@Model.PageSize">Previous</a>
+            </li>
+        }
+
+        <li class="page-item disabled">
+            <span class="page-link">Page @Model.PageNumber of @Model.TotalPages</span>
+        </li>
+
+        @if (Model.PageNumber < Model.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index"
+                   asp-route-pageNumber="@(Model.PageNumber + 1)"
+                   asp-route-pageSize="@Model.PageSize">Next</a>
+            </li>
+        }
+    </ul>
+</nav>

@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+
+namespace Hospital.Utilities
+{
+    public class PagedResult<T>
+    {
+        public List<T> Data { get; set; } = new List<T>();
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public int TotalItems { get; set; }
+
+        public int TotalPages => (PageSize == 0) ? 0 : (TotalItems + PageSize - 1) / PageSize;
+    }
+}

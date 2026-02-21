@@ -99,7 +99,7 @@
 &nbsp;<span class="style36">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
             <asp:Label ID="Label2" runat="server" CssClass="style36" 
-                Text="    CANDIDATE&nbsp; ON AIR&nbsp; &amp; OFF AIR"></asp:Label>
+                Text="    VIP CANDIDATE&nbsp; ON AIR&nbsp; &amp; OFF AIR"></asp:Label>
             </span><b>
             <br />
             <br />
@@ -139,7 +139,7 @@
             </td>
         <td>
             <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" 
-                onselectedindexchanged="DropDownList1_SelectedIndexChanged" Height="34px" 
+                onselectedindexchanged="DropDownList2_SelectedIndexChanged" Height="34px" 
                 Width="289px" style="margin-left: 0px">
             </asp:DropDownList>
             </td>
@@ -210,54 +210,6 @@
         </td>
         <td class="style9">
             &nbsp;
-            </td>
-    </tr>
-    <tr>
-        <td >
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td class="style32">
-            &nbsp;</td>
-        <td class="style8">
-            &nbsp;</td>
-        <td class="style10">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td >
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td class="style32">
-            &nbsp;</td>
-        <td class="style8">
-            &nbsp;</td>
-        <td class="style10">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td >
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td class="style32">
-            &nbsp;</td>
-        <td class="style8">
-            &nbsp;</td>
-        <td class="style10">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style11">
-            </td>
-        <td class="style11">
-            </td>
-        <td class="style13">
-            </td>
-        <td class="style14">
-            </td>
-        <td class="style15">
             </td>
     </tr>
     <tr>

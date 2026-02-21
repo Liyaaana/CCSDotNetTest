@@ -113,8 +113,19 @@ using System.Data;
             string sql12 = "";
             if (DropDownList1.SelectedItem.Value != "" && DropDownList1.SelectedItem.Value != "--Select--")
             {
-                sql12 = "SELECT CandidateDetailsN.Id, CandidateDetailsN.Stateid, StateMaster.Statename, CandidateDetailsN.Constituencyid, ConstituencyFive.Constituencyname, CandidateDetailsN.CantiName,CandidateDetailsN.Status, CandidateDetailsN.Statusid, CandidateDetailsN.Onair FROM StateMaster INNER JOIN  ConstituencyFive ON StateMaster.Id = ConstituencyFive.Stateid INNER JOIN CandidateDetailsN ON ConstituencyFive.Id = CandidateDetailsN.Constituencyid  where CandidateDetailsN.Stateid='" + DropDownList1.SelectedItem.Value + "' and CandidateDetailsN.Districtid='" + DropDownList2.SelectedValue + "' and  CandidateDetailsN.Statusid<>0 and CandidateDetailsN.Isvip = 1  and CandidateDetailsN.Onairvip=0  ";
-                SqlCommand cmd12 = new SqlCommand(sql12, con);
+            sql12 = "SELECT CandidateDetailsN.Id, CandidateDetailsN.Stateid, " +
+"StateMaster.Statename, CandidateDetailsN.Constituencyid, " +
+"ConstituencyFive.Constituencyname, CandidateDetailsN.CantiName, " +
+"CandidateDetailsN.Status, CandidateDetailsN.Statusid, CandidateDetailsN.Onair " +
+"FROM StateMaster " +
+"INNER JOIN ConstituencyFive ON StateMaster.id = ConstituencyFive.Stateid " +
+"INNER JOIN CandidateDetailsN ON ConstituencyFive.Id = CandidateDetailsN.Constituencyid " +
+"WHERE CandidateDetailsN.Stateid='" + DropDownList1.SelectedValue + "' " +
+"AND CandidateDetailsN.Districtid='" + DropDownList2.SelectedValue + "' " +
+"AND CandidateDetailsN.Isvip = 1 " +
+"AND (CandidateDetailsN.Onairvip = 0 OR CandidateDetailsN.Onairvip IS NULL)";
+
+            SqlCommand cmd12 = new SqlCommand(sql12, con);
                 SqlDataAdapter ad12 = new SqlDataAdapter(cmd12);
                 DataTable dt12 = new DataTable();
                 ad12.Fill(dt12);
@@ -129,8 +140,19 @@ using System.Data;
         }
         public void bindd21()
         {
-            string sql12 = "SELECT CandidateDetailsN.Id, CandidateDetailsN.Stateid, StateMaster.Statename, CandidateDetailsN.Constituencyid, ConstituencyFive.Constituencyname, CandidateDetailsN.CantiName,CandidateDetailsN.Status, CandidateDetailsN.Statusid, CandidateDetailsN.Onair FROM StateMaster INNER JOIN  ConstituencyFive ON StateMaster.id = ConstituencyFive.Stateid INNER JOIN CandidateDetailsN ON ConstituencyFive.Id = CandidateDetailsN.Constituencyid where  CandidateDetailsN.Stateid='" + DropDownList1.SelectedItem.Value + "' and CandidateDetailsN.Districtid='" + DropDownList2.SelectedValue + "' and  CandidateDetailsN.Statusid<>0  and CandidateDetailsN.Isvip = 1  and CandidateDetailsN.Onairvip ='" + 1 + "'  ";
-            SqlCommand cmd12 = new SqlCommand(sql12, con);
+        string sql12 = "SELECT CandidateDetailsN.Id, CandidateDetailsN.Stateid, " +
+"StateMaster.Statename, CandidateDetailsN.Constituencyid, " +
+"ConstituencyFive.Constituencyname, CandidateDetailsN.CantiName, " +
+"CandidateDetailsN.Status, CandidateDetailsN.Statusid, CandidateDetailsN.Onair " +
+"FROM StateMaster " +
+"INNER JOIN ConstituencyFive ON StateMaster.id = ConstituencyFive.Stateid " +
+"INNER JOIN CandidateDetailsN ON ConstituencyFive.Id = CandidateDetailsN.Constituencyid " +
+"WHERE CandidateDetailsN.Stateid='" + DropDownList1.SelectedValue + "' " +
+"AND CandidateDetailsN.Districtid='" + DropDownList2.SelectedValue + "' " +
+"AND CandidateDetailsN.Isvip = 1 " +
+"AND (CandidateDetailsN.Onairvip = 1 OR CandidateDetailsN.Onairvip IS NULL)";
+
+        SqlCommand cmd12 = new SqlCommand(sql12, con);
             SqlDataAdapter ad12 = new SqlDataAdapter(cmd12);
             DataTable dtq12 = new DataTable();
             ad12.Fill(dtq12);

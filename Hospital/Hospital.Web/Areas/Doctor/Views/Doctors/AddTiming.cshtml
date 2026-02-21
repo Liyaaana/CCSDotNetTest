@@ -1,0 +1,53 @@
+﻿@model Hospital.ViewModels.TimingViewModel
+
+<h2>Add Timing</h2>
+
+<form asp-action="AddTiming" method="post">
+    <!-- Hidden Doctor info -->
+    <input asp-for="DoctorId" type="hidden" />
+    <input asp-for="DoctorName" type="hidden" />
+
+    <div class="form-group">
+        <label asp-for="Date"></label>
+        <input asp-for="Date" type="date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MorningShiftStartTime"></label>
+        <input asp-for="MorningShiftStartTime" type="time" class="form-control" />
+        <span asp-validation-for="MorningShiftStartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MorningShiftEndTime"></label>
+        <input asp-for="MorningShiftEndTime" type="time" class="form-control" />
+        <span asp-validation-for="MorningShiftEndTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AfternoonShiftStartTime"></label>
+        <input asp-for="AfternoonShiftStartTime" type="time" class="form-control" />
+        <span asp-validation-for="AfternoonShiftStartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AfternoonShiftEndTime"></label>
+        <input asp-for="AfternoonShiftEndTime" type="time" class="form-control" />
+        <span asp-validation-for="AfternoonShiftEndTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Duration"></label>
+        <input asp-for="Duration" type="number" class="form-control" />
+        <span asp-validation-for="Duration" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<Hospital.Models.Status>()" class="form-control"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Add Timing" />
+</form>

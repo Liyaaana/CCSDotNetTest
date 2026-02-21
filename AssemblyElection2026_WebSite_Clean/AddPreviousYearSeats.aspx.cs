@@ -48,7 +48,8 @@ public partial class AddPreviousYearSeats : System.Web.UI.Page
     {
         get();
         district();
-        BindGrid();
+        GridView1.DataSource = null;   // optional (clears grid)
+        GridView1.DataBind();
         con.Close();
     }
 
@@ -90,10 +91,14 @@ public partial class AddPreviousYearSeats : System.Web.UI.Page
             DropDownList2.SelectedIndex > 0)
         {
             string sql =
-                "SELECT Id, PartyName, Pre_yr_seat " +
-                "FROM StateSeat " +
-                "WHERE Stateid='" + DropDownList1.SelectedValue + "' " +
-                "AND Districtid='" + DropDownList2.SelectedValue + "'";
+            "SELECT P.id AS PartyId, P.partyname, " +
+            "ISNULL(S.Pre_yr_seat,0) AS Pre_yr_seat, " +
+            "S.Id AS SeatId " +
+            "FROM PartyMasterN P " +
+            "LEFT JOIN StateSeat S ON " +
+            "    S.PartyName = P.partyname AND " +
+            "    S.Stateid = '" + DropDownList1.SelectedValue + "' AND " +
+            "    S.Districtid = '" + DropDownList2.SelectedValue + "'";
 
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -107,29 +112,53 @@ public partial class AddPreviousYearSeats : System.Web.UI.Page
         }
     }
 
+
     // ================= UPDATE BUTTON =================
 
     protected void Button1_Click(object sender, EventArgs e)
     {
         get();
 
-        DataTable dt = (DataTable)Session["UPDATA"];
-
-        for (int i = 0; i < dt.Rows.Count; i++)
+        for (int i = 0; i < GridView1.Rows.Count; i++)
         {
-            string key = GridView1.DataKeys[i].Value.ToString();
-            string seat =
-                ((TextBox)GridView1.Rows[i]
-                .FindControl("TextBox1")).Text;
+            string partyName = GridView1.Rows[i].Cells[0].Text;
+            string seat = ((TextBox)GridView1.Rows[i]
+                          .FindControl("TextBox1")).Text;
 
             if (!string.IsNullOrEmpty(seat))
             {
-                string update =
-                    "update StateSeat set Pre_yr_seat='" +
-                    seat + "' where Id='" + key + "'";
+                string checkQuery =
+                "SELECT COUNT(*) FROM StateSeat WHERE " +
+                "Stateid='" + DropDownList1.SelectedValue + "' AND " +
+                "Districtid='" + DropDownList2.SelectedValue + "' AND " +
+                "PartyName='" + partyName + "'";
 
-                SqlCommand cmd = new SqlCommand(update, con);
-                cmd.ExecuteNonQuery();
+                SqlCommand checkCmd = new SqlCommand(checkQuery, con);
+                int exists = (int)checkCmd.ExecuteScalar();
+
+                if (exists > 0)
+                {
+                    string update =
+                    "UPDATE StateSeat SET Pre_yr_seat='" + seat + "' WHERE " +
+                    "Stateid='" + DropDownList1.SelectedValue + "' AND " +
+                    "Districtid='" + DropDownList2.SelectedValue + "' AND " +
+                    "PartyName='" + partyName + "'";
+
+                    SqlCommand cmd = new SqlCommand(update, con);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string insert =
+                    "INSERT INTO StateSeat (Stateid, Districtid, PartyName, Pre_yr_seat) VALUES ('" +
+                    DropDownList1.SelectedValue + "','" +
+                    DropDownList2.SelectedValue + "','" +
+                    partyName + "','" +
+                    seat + "')";
+
+                    SqlCommand cmd = new SqlCommand(insert, con);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
