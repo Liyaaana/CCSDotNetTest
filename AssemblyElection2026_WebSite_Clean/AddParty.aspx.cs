@@ -208,6 +208,7 @@ public partial class AddParty : Page
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         GridView1.EditIndex = -1;
+
         get();
         data();
         con.Close();
