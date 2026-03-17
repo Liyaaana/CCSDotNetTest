@@ -31,6 +31,9 @@
                 <asp:MenuItem Text="---- Elections ----" />
                 <asp:MenuItem NavigateUrl="~/Bug.aspx" Text="Bug" />
                 <asp:MenuItem NavigateUrl="~/LeadStatus.aspx" Text="Lead And Status Update" />
+                <asp:MenuItem NavigateUrl="~/DistrictWiseVote_1.aspx" Text="1) District Wise Vote" />
+                <asp:MenuItem NavigateUrl="~/DistrictWiseVote_2.aspx" Text="2) District Wise Vote" />
+                <asp:MenuItem NavigateUrl="~/DistrictWiseVote_3.aspx" Text="3) District Wise Vote" />
                 <asp:MenuItem NavigateUrl="~/Onair.aspx" Text="On Air Candidates" />
                 <asp:MenuItem NavigateUrl="~/VIP_Onair.aspx" Text="VIP On Air" />
 
@@ -39,10 +42,9 @@
                     <asp:MenuItem NavigateUrl="~/AddDistricts.aspx" Text="Add Districts" />
                     <asp:MenuItem NavigateUrl="~/PartyMaster.aspx" Text="Add party" />
                     <asp:MenuItem NavigateUrl="~/Constituency_insertion.aspx" Text="Constituency Name" />
-                    <asp:MenuItem NavigateUrl="~/DistrictConstituencyVote.aspx" Text="DistrictConstituencyVote" />
                     <asp:MenuItem NavigateUrl="~/Candidate_insertion.aspx" Text="Candidate Name" />
                     <asp:MenuItem NavigateUrl="~/AddPreviousYearSeats.aspx" Text="Add PreviousYearSeats" />
-                    <asp:MenuItem NavigateUrl="~/AddParty.aspx" Text="Add Bug Party" />
+                    <asp:MenuItem NavigateUrl="~/AddBugParty.aspx" Text="Add Bug Party" />
                 </asp:MenuItem>
             </Items>
             <StaticItemTemplate>

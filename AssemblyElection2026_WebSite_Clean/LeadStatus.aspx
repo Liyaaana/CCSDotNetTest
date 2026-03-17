@@ -2,9 +2,28 @@
     MasterPageFile="~/Election.Master" 
     AutoEventWireup="true" 
     CodeFile="LeadStatus.aspx.cs" 
-    Inherits="LeadStatus" %>
+    Inherits="LeadStatus" 
+    MaintainScrollPositionOnPostBack="true"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 849px;
+        }
+        .style36
+        {
+            width: 61px;
+            height: 230px;
+        }
+        .style1
+    {
+        width: 100%;
+    }
+        .auto-style2 {
+            width: 298px;
+            height: 230px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -47,16 +66,21 @@
         Width="300px">
     </asp:DropDownList>
 
-    <br /><br />
+    <br />
 
     <!-- MAIN GRID -->
+    <table class="style1">
+    <tr>
+        <td class="auto-style2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+        <td class="style36">
     <asp:GridView ID="GridView1"
         runat="server"
         AutoGenerateColumns="False"
         DataKeyNames="Id"
         Visible="False"
         ShowFooter="True"
-        Width="800px">
+        Width="846px">
 
         <Columns>
 
@@ -75,7 +99,7 @@
 
             <asp:TemplateField HeaderText="Status">
                 <ItemTemplate>
-                    <asp:DropDownList ID="DropDownList3" runat="server">
+                    <asp:DropDownList ID="DropDownList4" runat="server">
                     </asp:DropDownList>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -93,60 +117,102 @@
         </Columns>
     </asp:GridView>
 
-    <br /><br />
-
+        </td>
+        <td class="style36">
+            &nbsp;</td>
+    </tr>
+</table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;</td>
+    <td class="style38">
+        </td>
+    <td class="style38">
+        </td>
+    <td class="style38">
+        </td>
+</tr>
+<tr>
+    <td class="style4" colspan="10">
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <br />
+        <br />
+        <table style="width:100%;">
+            <tr>
+                <td class="auto-style1">
     <!-- ON AIR GRID -->
     <asp:GridView ID="GridView2"
         runat="server"
         AutoGenerateColumns="False"
         DataKeyNames="Id"
         Visible="False"
-        Width="800px">
+        Width="800px" Caption="<b>ON AIR</b>" 
+       style="background-color: #CCCCCC;  font-size: Medium;" Height="160px">
 
         <Columns>
-
-            <asp:BoundField DataField="constituencyname" HeaderText="Constituency" />
             <asp:BoundField DataField="CantiName" HeaderText="Candidate" />
+            <asp:BoundField DataField="constituencyname" HeaderText="Constituency" />            
             <asp:BoundField DataField="Status" HeaderText="Status" />
 
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:CheckBox ID="CheckBox2" runat="server" />
                     <asp:Button ID="Button2" runat="server"
+                        style="font-weight:900; background-color:red; color:White" 
                         Text="TO OFF AIR"
                         OnClick="Button2_Click" />
                 </ItemTemplate>
-            </asp:TemplateField>
+                        <HeaderStyle Font-Size="Medium" />
+        </asp:TemplateField>
+    </Columns>
+    <HeaderStyle Font-Size="X-Large" />
+</asp:GridView>
 
-        </Columns>
-    </asp:GridView>
-
-    <br /><br />
-
+                </td>
+                <td>
     <!-- OFF AIR GRID -->
     <asp:GridView ID="GridView3"
         runat="server"
         AutoGenerateColumns="False"
         DataKeyNames="Id"
         Visible="False"
-        Width="800px">
-
+        Width="800px"  Caption="<b>OFF AIR</b>" 
+                style="text-align: justify; margin-left: 23px; background-color: #CCCCCC;  font-size: Medium;" 
+                            Height="160px">
         <Columns>
-
-            <asp:BoundField DataField="constituencyname" HeaderText="Constituency" />
+            
             <asp:BoundField DataField="CantiName" HeaderText="Candidate" />
+            <asp:BoundField DataField="constituencyname" HeaderText="Constituency" />
             <asp:BoundField DataField="Status" HeaderText="Status" />
 
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:CheckBox ID="CheckBox3" runat="server" />
                     <asp:Button ID="Button3" runat="server"
+                        style="font-weight:900; background-color:green; color:White"  
                         Text="TO ON AIR"
                         OnClick="Button3_Click" />
                 </ItemTemplate>
-            </asp:TemplateField>
+                        <HeaderStyle Font-Size="Medium" />
+        </asp:TemplateField>
+    </Columns>
+    <HeaderStyle Font-Size="X-Large" />
+</asp:GridView>
 
-        </Columns>
-    </asp:GridView>
+                </td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+               <td class="auto-style1">
+  
 
+    <br /><br />
+
+
+    
+    </table>
 </asp:Content>

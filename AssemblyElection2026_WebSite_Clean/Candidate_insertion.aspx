@@ -37,6 +37,34 @@
             width: 211px;
         }
    
+        .auto-style1 {
+            width: 332px;
+            height: 40px;
+        }
+        .auto-style2 {
+            width: 124px;
+            height: 40px;
+        }
+        .auto-style3 {
+            width: 436px;
+            height: 40px;
+        }
+        .auto-style4 {
+            width: 211px;
+            height: 40px;
+        }
+        .auto-style5 {
+            width: 152px;
+            height: 40px;
+        }
+        .auto-style6 {
+            height: 40px;
+        }
+        .auto-style7 {
+            width: 527px;
+            height: 40px;
+        }
+   
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -57,87 +85,88 @@
        
     </tr>
     <tr>
-        <td class="style36">
-            &nbsp;</td>
-        <td class="style40">
+        <td class="auto-style1">
+            </td>
+        <td class="auto-style2">
             <asp:Label ID="Label1" runat="server"  Text="State " Font-Size="Large" 
                 Font-Bold="True"></asp:Label>
             </td>
-        <td class="style16">
+        <td class="auto-style3">
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
                 onselectedindexchanged="DropDownList1_SelectedIndexChanged" Height="35px" 
                 Width="430px">
             </asp:DropDownList>
             </td>
             
-            <td class="style42">
+            <td class="auto-style4">
             <asp:Label ID="Label10" runat="server" 
                 Text="Party " Font-Bold="True" Font-Size="Large"></asp:Label>
             </td>
-        <td class="style16">
-            <asp:DropDownList ID="DropDownList4" runat="server" Height="35px" Width="430px">
+        <td class="auto-style3">
+            <asp:DropDownList ID="DropDownList4" runat="server" Height="35px" Width="430px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList4_SelectedIndexChanged">
             </asp:DropDownList>
             </td>
             
-        <td class="style35">
-            &nbsp;</td>
-        <td>
+        <td class="auto-style5">
+            </td>
+        <td class="auto-style6">
         </td>
-        <td class="style4">
+        <td class="auto-style7">
             </td>
     </tr>
     <tr>
-        <td class="style36">
-            &nbsp;</td>
-        <td class="style40">
+        <td class="auto-style1">
+            </td>
+        <td class="auto-style2">
             <asp:Label ID="Label9" runat="server"  Text="District " Font-Size="Large" 
                 Font-Bold="True"></asp:Label>
             </td>
-        <td class="style16">
+        <td class="auto-style3">
             <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" 
                 onselectedindexchanged="DropDownList2_SelectedIndexChanged" Height="35px" 
                 Width="430px">
             </asp:DropDownList>
             </td>
             
-            <td class="style42">
-            <asp:Label ID="Label16" runat="server" 
-                 Text="Image" 
-                Font-Bold="True" Font-Size="Large"></asp:Label>
+            <td class="auto-style4">
+            <asp:Label ID="Label17" runat="server" 
+                Text="Sub Party " Font-Bold="True" Font-Size="Large"></asp:Label>
             </td>
-        <td class="style16">
-            <asp:FileUpload ID="FileUpload1" runat="server" Height="35px" 
-                style="margin-bottom: 0px" Width="430px" />
+        <td class="auto-style3">
+            <asp:DropDownList ID="DropDownList5" runat="server" Height="35px" Width="430px">
+            </asp:DropDownList>
             </td>
             
-        <td class="style35">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td class="style4">
+        <td class="auto-style5">
+            </td>
+        <td class="auto-style6">
+            </td>
+        <td class="auto-style7">
             </td>
     </tr>
     <tr>
-        <td class="style36">
-            &nbsp;</td>
-        <td class="style40">
+        <td class="auto-style1">
+            </td>
+        <td class="auto-style2">
             <asp:Label ID="Label2" runat="server"  Text="Constituency" Font-Bold="True" 
                 Font-Size="Large"></asp:Label>
         </td>
-        <td class="style16">
+        <td class="auto-style3">
             <asp:DropDownList ID="DropDownList3" runat="server" AutoPostBack="True" 
                 onselectedindexchanged="DropDownList3_SelectedIndexChanged" Height="30px" 
                 Width="430px">
             </asp:DropDownList>
         </td>
-        <td class="style42">
-            <asp:Label ID="Label15" runat="server" 
-                 Text="Logo" Font-Bold="True" Font-Size="Large"></asp:Label>
+        <td class="auto-style4">
+            <asp:Label ID="Label16" runat="server" 
+                 Text="Image" 
+                Font-Bold="True" Font-Size="Large"></asp:Label>
             </td>
-        <td>
-            <asp:FileUpload ID="FileUpload2" runat="server" Height="35px" Width="430px" />
+        <td class="auto-style6">
+            <asp:FileUpload ID="FileUpload1" runat="server" Height="35px" 
+                style="margin-bottom: 0px" Width="430px" />
             </td>
-        <td>
+        <td class="auto-style6">
             </td>
     </tr>
     <tr>
@@ -152,46 +181,49 @@
                 Width="426px"></asp:TextBox>
         </td>
         <td class="style42" >
+            <asp:Label ID="Label15" runat="server" 
+                 Text="Logo" Font-Bold="True" Font-Size="Large"></asp:Label>
+            </td>
+        <td>
+            <asp:FileUpload ID="FileUpload2" runat="server" Height="35px" Width="430px" />
+            </td>
+        <td>
+            </td>
+    </tr>
+    <tr>
+        <td class="auto-style6">
+            </td>
+        <td class="auto-style6" >
+            </td>
+        <td class="auto-style6" >
+            </td>
+        <td class="auto-style4" >
             <asp:Label ID="Label14" runat="server" 
                  Text="Party Colour" 
                 Font-Size="Large" Font-Bold="True"></asp:Label>
             </td>
-        <td>
-            <asp:FileUpload ID="FileUpload3" runat="server" Width="430px" height="35px"/>
-            </td>
-        <td>
-            </td>
-    </tr>
-    <tr>
-        <td>
-            &nbsp;</td>
-        <td >
-            </td>
-        <td >
-            </td>
-        <td class="style42" >
-            </td>
-        <td >
+        <td class="auto-style6" >
               <%--   <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
                             ErrorMessage="Only Letters allowed" ValidationExpression="^[^\W\d]+$"></asp:RegularExpressionValidator>--%>
-            <asp:CheckBox ID="CheckBox1" runat="server" Text="VIP" />
+            <asp:FileUpload ID="FileUpload3" runat="server" Width="430px" height="35px"/>
         </td>
-        <td>
+        <td class="auto-style6">
             </td>
     </tr>
     <tr>
-        <td>
-            &nbsp;</td>
-        <td >
-            &nbsp;</td>
-        <td >
-            &nbsp;</td>
-        <td class="style42" >
-            &nbsp;</td>
-        <td >
-              &nbsp;</td>
-        <td>
-            &nbsp;</td>
+        <td class="auto-style6">
+            </td>
+        <td class="auto-style6" >
+            </td>
+        <td class="auto-style6" >
+            </td>
+        <td class="auto-style4" >
+            </td>
+        <td class="auto-style6" >
+            <asp:CheckBox ID="CheckBox1" runat="server" Text="VIP" />
+        </td>
+        <td class="auto-style6">
+            </td>
     </tr>
     <tr>
         <td >
@@ -223,26 +255,26 @@
         <asp:BoundField DataField="CantiName" HeaderText="Candidate" />
         <asp:TemplateField HeaderText="Image">
             <ItemTemplate>
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# "count_img.aspx?id=" + Eval("id") %>' Width="27%" />
-                <asp:FileUpload ID="FileUpload3" runat="server" />
+                <asp:Image ID="Image1" runat="server" ImageUrl='<%# "count_image.aspx?id=" + Eval("id") %>' Width="27%" />
+                <asp:FileUpload ID="FileUpload4" runat="server" />
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Logo">
             <ItemTemplate>
                 <asp:Image ID="Image2" runat="server" ImageUrl='<%# "logo_img.aspx?id=" + Eval("id") %>' Width="27%" />
-                <asp:FileUpload ID="FileUpload4" runat="server" />
+                <asp:FileUpload ID="FileUpload5" runat="server" />
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Party Colour">
             <ItemTemplate>
                 <asp:Image ID="Image3" runat="server" ImageUrl='<%# "party_img.aspx?id=" + Eval("id") %>' Width="27%" />
-                <asp:FileUpload ID="FileUpload5" runat="server" />
+                <asp:FileUpload ID="FileUpload6" runat="server" />
             </ItemTemplate>
             <FooterTemplate>
                 <asp:Button ID="Button2" runat="server" onclick="Button2_Click" style="font-weight: 700" Text="Update" />
             </FooterTemplate>
         </asp:TemplateField>
-        
+     
         <asp:CommandField ShowEditButton="True" />
         <asp:CommandField ShowDeleteButton="True" />
         

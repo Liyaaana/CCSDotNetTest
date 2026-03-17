@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Data;
 
 
-    public partial class Party_img : System.Web.UI.Page
+    public partial class party_img : System.Web.UI.Page
     {
         SqlConnection connection = new SqlConnection();
         public void getconnection()

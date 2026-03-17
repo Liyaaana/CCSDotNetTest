@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Election.Master" AutoEventWireup="true" CodeFile="AddParty.aspx.cs" Inherits="AddParty" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Election.Master" AutoEventWireup="true" CodeFile="AddBugParty.aspx.cs" Inherits="AddBugParty" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -242,6 +242,7 @@
         <td class="auto-style33">
             </td>
     </tr>
+    
     <tr>
         <td class="auto-style2">
             </td>
@@ -252,9 +253,9 @@
             </asp:DropDownList>--%>
          <asp:TextBox ID="TextBox1" runat="server" AutoComplete="Off" 
                 ontextchanged="Page_Load" Height="27px" Width="350px"></asp:TextBox>
-                  <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
+                  <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
                             ErrorMessage="Only Letters  & Special characters allowed" ValidationExpression="^[a-zA-Z\s\W]+$" Display="Dynamic">
-                            </asp:RegularExpressionValidator>
+                            </asp:RegularExpressionValidator>--%>
         </td>
         <td class="auto-style15">
             </td>
