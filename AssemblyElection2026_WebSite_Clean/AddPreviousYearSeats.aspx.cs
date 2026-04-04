@@ -91,15 +91,22 @@ public partial class AddPreviousYearSeats : System.Web.UI.Page
             DropDownList2.SelectedIndex > 0)
         {
             string sql =
-            "SELECT P.id AS PartyId, P.partyname, " +
-            "ISNULL(S.Pre_yr_seat,0) AS Pre_yr_seat, " +
-            "S.Id AS SeatId " +
-            "FROM PartyMasterN P " +
-            "LEFT JOIN StateSeat S ON " +
-            "    S.PartyName = P.partyname AND " +
-            "    S.Stateid = '" + DropDownList1.SelectedValue + "' AND " +
-            "    S.Districtid = '" + DropDownList2.SelectedValue + "'";
-
+            "SELECT Id as SeatId," + " PartyName AS partyname, " +
+            "ISNULL(Pre_yr_seat,0) AS Pre_yr_seat " +
+            "FROM StateSeat " +
+            "WHERE Stateid='" + DropDownList1.SelectedValue + "' " +
+            "AND Districtid='" + DropDownList2.SelectedValue + "'";
+            /*  string sql =
+                "SELECT P.id AS PartyId, P.partyname, " +
+                "ISNULL(S.Pre_yr_seat,0) AS Pre_yr_seat, " +
+                "S.Id AS SeatId " +
+                "FROM PartyMasterN P " +
+                "LEFT JOIN StateSeat S ON " +
+                "    S.PartyName = P.partyname AND " +
+                "    S.Stateid = '" + DropDownList1.SelectedValue + "' AND " +
+                "    S.Districtid = '" + DropDownList2.SelectedValue + "'";
+            */
+            
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

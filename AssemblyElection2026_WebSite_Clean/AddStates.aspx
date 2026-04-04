@@ -113,6 +113,50 @@
     {
         height: 46px;
     }
+        .auto-style3 {
+            width: 333px;
+            height: 58px;
+        }
+        .auto-style4 {
+            width: 333px;
+        }
+        .auto-style5 {
+            width: 217px;
+            font-size: x-large;
+        }
+        .auto-style6 {
+            width: 217px;
+            font-size: x-large;
+            height: 10px;
+        }
+        .auto-style7 {
+            width: 217px;
+            height: 58px;
+        }
+        .auto-style8 {
+            width: 217px;
+        }
+        .auto-style9 {
+            width: 333px;
+            height: 10px;
+        }
+        .auto-style10 {
+            height: 10px;
+            width: 601px;
+        }
+        .auto-style11 {
+            height: 10px;
+        }
+    .auto-style12 {
+        width: 601px;
+    }
+    .auto-style13 {
+        height: 58px;
+        width: 601px;
+    }
+    .auto-style14 {
+        height: 58px;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -129,16 +173,16 @@
                    
     </tr>
     <tr>
-        <td class="style27">
+        <td class="auto-style4">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             &nbsp;</td>
-        <td class="style26">
-            &nbsp;&nbsp;
-            <asp:Label ID="Label1" runat="server" Text="State    Name   " Font-Bold="True" 
-                Font-Size="Large" width="145px" Height="26px"
+        <td class="auto-style5">
+            &nbsp;<br />
+            <asp:Label ID="Label1" runat="server" Text="State/Bug Name" Font-Bold="True" 
+                Font-Size="Large" width="203px" Height="31px"
                ></asp:Label>
  </td>
-        <td colspan="1" rowspan="1" class="style31">
+        <td colspan="1" rowspan="1" class="auto-style12">
            
             <br />
            
@@ -147,53 +191,54 @@
                  <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1"
                             ErrorMessage="Only Letters  & Special characters allowed" ValidationExpression="^[a-zA-Z\s\W]+$" Display="Dynamic">
                             </asp:RegularExpressionValidator>        
+            <br />
         </td>
-        <td class="style28">
+        <td>
             </td>
-        <td class="style28">
+        <td>
             </td>
     </tr>
     <tr>
-        <td class="style35">
-            </td>
-        <td class="style36">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label 
-                ID="Label2" runat="server" Text="Total Seats" Font-Bold="True" width="143px"
+        <td class="auto-style9">
+            &nbsp;</td>
+        <td class="auto-style6">
+            <asp:Label 
+                ID="Label2" runat="server" Text="Total Seats" Font-Bold="True" width="139px"
                 Font-Size="Large" Height="26px"></asp:Label>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             </td>
-        <td class="style37">
+             &nbsp;</td>
+        <td class="auto-style10">
             <asp:TextBox ID="TextBox2" runat="server"  autocomplete="off" Width="235px" 
                 Height="24px"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ControlToValidate="TextBox2"
                             ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+            <br />
         </td>
-        <td class="style38">
+        <td class="auto-style11">
             </td>
-        <td class="style38">
+        <td class="auto-style11">
             </td>
     </tr>
     <tr>
-        <td class="style7">
+        <td class="auto-style3">
             </td>
-        <td class="style20">
+        <td class="auto-style7">
             </td>
-        <td class="style34">
+        <td class="auto-style13">
             <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Save" 
                 Font-Bold="True" Font-Size="Large" Height="40px" Width="105px" 
                 style="background-color: #C0C0C0" />
             </td>
-        <td class="style9">
+        <td class="auto-style14">
             </td>
-        <td class="style9">
+        <td class="auto-style14">
             </td>
     </tr>
     <tr>
-        <td class="style6">
+        <td class="auto-style4">
             &nbsp;</td>
-        <td class="style18">
+        <td class="auto-style8">
             &nbsp;</td>
-        <td class="style32">
+        <td class="auto-style12">
             <br />
             <asp:GridView ID="GridView1" runat="server" autocomplete="off" 
                 AutoGenerateColumns="False" DataKeyNames="id" Font-Size="Large" Height="157px" 

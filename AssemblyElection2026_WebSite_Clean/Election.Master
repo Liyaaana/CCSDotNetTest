@@ -30,6 +30,7 @@
             <Items>
                 <asp:MenuItem Text="---- Elections ----" />
                 <asp:MenuItem NavigateUrl="~/Bug.aspx" Text="Bug" />
+                <asp:MenuItem NavigateUrl="~/SubPartiesBug.aspx" Text="SubParties Bug" />
                 <asp:MenuItem NavigateUrl="~/LeadStatus.aspx" Text="Lead And Status Update" />
                 <asp:MenuItem NavigateUrl="~/DistrictWiseVote_1.aspx" Text="1) District Wise Vote" />
                 <asp:MenuItem NavigateUrl="~/DistrictWiseVote_2.aspx" Text="2) District Wise Vote" />

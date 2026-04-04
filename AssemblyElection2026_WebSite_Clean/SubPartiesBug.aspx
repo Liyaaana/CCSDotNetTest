@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Election.Master" AutoEventWireup="true" CodeFile="Bug.aspx.cs" Inherits="Bug" MaintainScrollPositionOnPostBack="true" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Election.Master" AutoEventWireup="true" CodeFile="SubPartiesBug.aspx.cs" Inherits="SubPartiesBug" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -42,10 +42,7 @@
         {
             height: 97px;
         }
-        .auto-style1 {
-            margin-top: 0px;
-        }
-    .auto-style2 {
+        .auto-style2 {
         height: 51px;
     }
         .auto-style3 {
@@ -137,7 +134,7 @@
         <td class="auto-style12">
   
             <asp:GridView ID="BhGridView" runat="server" AutoGenerateColumns="False" 
-                Caption="Kerala Bug" DataKeyNames="id" Font-Bold="True" 
+                Caption="LDF Bug" DataKeyNames="id" Font-Bold="True" 
                 onrowdeleting="BhGridView_RowDeleting" onrowcancelingedit="BhGridView_RowCancelingEdit"
                 onrowediting="BhGridView_RowEditing" onrowupdating="BhGridView_RowUpdating"
                ShowFooter="True" 
@@ -192,7 +189,7 @@
             &nbsp;</td>
         <td class="auto-style13"  >
             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:GridView ID="WbGridView" runat="server" AutoGenerateColumns="False" 
-                Caption="West Bengal Bug" DataKeyNames="id" Font-Bold="True" 
+                Caption="UDF Bug" DataKeyNames="id" Font-Bold="True" 
                 onrowdeleting="WbGridView_RowDeleting" onrowcancelingedit="WbGridView_RowCancelingEdit"
                 onrowediting="WbGridView_RowEditing" onrowupdating="WbGridView_RowUpdating"
                ShowFooter="True" 
@@ -259,7 +256,7 @@
         <td class="auto-style13"  >
   
             <asp:GridView ID="AsGridView" runat="server" AutoGenerateColumns="False" 
-                Caption="Assam Bug" DataKeyNames="id" Font-Bold="True" 
+                Caption="NDA Bug" DataKeyNames="id" Font-Bold="True" 
                 onrowdeleting="AsGridView_RowDeleting" onrowcancelingedit="AsGridView_RowCancelingEdit"
                 onrowediting="AsGridView_RowEditing" onrowupdating="AsGridView_RowUpdating"
                ShowFooter="True" 
@@ -312,7 +309,7 @@
         <td class="auto-style14">
   
             <asp:GridView ID="TnGridView" runat="server" AutoGenerateColumns="False" 
-                Caption="Tamil Nadu Bug" DataKeyNames="id" Font-Bold="True" 
+                Caption="OTH Bug" DataKeyNames="id" Font-Bold="True" 
                 onrowdeleting="TnGridView_RowDeleting" onrowcancelingedit="TnGridView_RowCancelingEdit"
                 onrowediting="TnGridView_RowEditing" onrowupdating="TnGridView_RowUpdating"
                ShowFooter="True" 
@@ -372,56 +369,6 @@
   
     <tr>
         <td class="auto-style8">
-            </td>
-        <td class="auto-style15">
-  
-            <asp:GridView ID="PcGridView" runat="server" AutoGenerateColumns="False" 
-                Caption="Puducherry Bug" DataKeyNames="id" Font-Bold="True" 
-                onrowdeleting="PcGridView_RowDeleting" onrowcancelingedit="PcGridView_RowCancelingEdit"
-                onrowediting="PcGridView_RowEditing" onrowupdating="PcGridView_RowUpdating"
-               ShowFooter="True" 
-                style="background-color: #CCCCCC" Width="928px" Height="236px">
-                <Columns>
-                    <asp:BoundField DataField="partyname" HeaderText="Party Name" />
-                    <asp:TemplateField>
-                        <FooterTemplate>
-                            <asp:Button ID="Button9" runat="server" onclick="PcBtn_Click" 
-                                style="font-weight: 700" Text="UPDATE" />
-                               <asp:Button ID="Button10" runat="server" OnClick="Button2_Click" 
-                Text="Add New Party" style="font-weight: 700"/>
-                        </FooterTemplate>
-                        <ItemTemplate>
-                            <asp:TextBox ID="PctxtBh1" runat="server" AutoComplete="Off" Max="60"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" 
-                                ControlToValidate="PctxtBh1" ErrorMessage="Only Numbers allowed" 
-                                ValidationExpression="\d+$"></asp:RegularExpressionValidator>
-                           <%-- <asp:RangeValidator runat="server" ID="range1" MinimumValue="0" MaximumValue="60" ControlToValidate="TextBox1"  ErrorMessage="Max Value is 60"></asp:RangeValidator>--%>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="New_seat" HeaderText="Seat" />
-                   <%-- <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtJK2" runat="server" AutoComplete="Off"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
-                                ControlToValidate="txtJK2" ErrorMessage="Only Numbers allowed" 
-                                ValidationExpression="\d+"></asp:RegularExpressionValidator>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Voteshare" HeaderText="Vote Share" />--%>
-                     <asp:CommandField ShowEditButton="True" />
-                    <asp:CommandField ShowDeleteButton="True" />
-                </Columns>
-            </asp:GridView>
-            </td>
-        <td class="auto-style2" >
-            </td>
-        <td class="auto-style2">
-            </td>
-    </tr>
-   
-  
-    <tr>
-        <td class="auto-style8">
             &nbsp;</td>
         <td class="auto-style15">
             &nbsp;</td>
@@ -434,3 +381,4 @@
   
 </table>
 </asp:Content>
+

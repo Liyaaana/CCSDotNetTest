@@ -56,41 +56,41 @@ public partial class AddBugParty : Page
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
         get();
-        district();
+        //district();
         data();
         con.Close();
     }
 
     // ================= DISTRICT DROPDOWN =================
 
-    public void district()
-    {
-        if (DropDownList1.SelectedIndex > 0)
-        {
-            string sql =
-                "select Id, Districtname from DistrictMaster " +
-                "where Stateid='" + DropDownList1.SelectedValue + "'";
+    //public void district()
+    //{
+    //    if (DropDownList1.SelectedIndex > 0)
+    //    {
+    //        string sql =
+    //            "select Id, Districtname from DistrictMaster " +
+    //            "where Stateid='" + DropDownList1.SelectedValue + "'";
 
-            SqlCommand cmd = new SqlCommand(sql, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt1 = new DataTable();
-            da.Fill(dt1);
+    //        SqlCommand cmd = new SqlCommand(sql, con);
+    //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+    //        DataTable dt1 = new DataTable();
+    //        da.Fill(dt1);
 
-            DropDownList2.DataSource = dt1;
-            DropDownList2.DataTextField = "Districtname";
-            DropDownList2.DataValueField = "Id";
-            DropDownList2.DataBind();
-            DropDownList2.Items.Insert(0, "-- Select --");
-            Session["data1"] = dt1;
-        }
-    }
+    //        DropDownList2.DataSource = dt1;
+    //        DropDownList2.DataTextField = "Districtname";
+    //        DropDownList2.DataValueField = "Id";
+    //        DropDownList2.DataBind();
+    //        DropDownList2.Items.Insert(0, "-- Select --");
+    //        Session["data1"] = dt1;
+    //    }
+    //}
 
-    protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        get();
-        data();
-        con.Close();
-    }
+    //protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    get();
+    //    data();
+    //    con.Close();
+    //}
 
     // ================= INSERT PARTY =================
 
@@ -115,7 +115,8 @@ public partial class AddBugParty : Page
             waspPath = Path.Combine(waspLocation, image);
 
             ///////////////////////////////////Liyana/////////////////////////////////////////////////////////
-            string check = "SELECT COUNT(*) FROM StateSeat WHERE Stateid='"+ DropDownList1.SelectedValue + "' AND Districtid='"+ DropDownList2.SelectedValue + "' AND PartyName=N'" + TextBox1.Text + "'";
+            //string check = "SELECT COUNT(*) FROM StateSeat WHERE Stateid='" + DropDownList1.SelectedValue + "' AND Districtid='" + DropDownList2.SelectedValue + "' AND PartyName=N'" + TextBox1.Text + "'";
+            string check = "SELECT COUNT(*) FROM StateSeat WHERE Stateid='" + DropDownList1.SelectedValue + "'";
 
             SqlCommand checkCmd = new SqlCommand(check, con);
             int exists = (int)checkCmd.ExecuteScalar();
@@ -137,13 +138,13 @@ public partial class AddBugParty : Page
                 //sql1 = "INSERT INTO DistrictWiseBug (Idd, PartyName, barcolor)VALUES('" + DropDownList2.SelectedItem.Value + "', N'" + TextBox1.Text + "', '" + waspPath +"');select @@identity";
                 //sql1 = "insert into StateSeat(Stateid,PartyName,PartycolorWASP,PartycolorBRAIN,Pre_yr_seat,New_seat,Difference,ColorWASP,ColorBRAIN,Pie17,Pie22,Bar17,Bar22,Partycolor,Voteshare,Pie,CandiImage_Wasp,CandiImage_Brain,Logo_wasp,Logo_brain,Stateimage_brain,Displayname) values('" + DropDownList1.SelectedItem.Value + "',N'" + TextBox1.Text + "','" + waspPath + "','" + brainPath + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + 0 + "','" + waspCandiPath + "','" + brainCandiPath + "','" + waspLogoPath + "','" + brainLogoPath + "','" + 0 + "','" + 0 + "','" + DropDownList1.SelectedItem.Value + "');select @@identity";
                 sql1 = "INSERT INTO StateSeat " +
-                "(Stateid, Districtid, PartyName, PartycolorWASP, PartycolorBRAIN, " +
+                "(Stateid,  PartyName, PartycolorWASP, PartycolorBRAIN, " +
                 "Pre_yr_seat, New_seat, Difference, ColorWASP, ColorBRAIN, " +
                 "Pie17, Pie22, Bar17, Bar22, Partycolor, Voteshare, Pie, " +
                 "CandiImage_Wasp, CandiImage_Brain, Logo_wasp, Logo_brain, Stateimage_brain, Displayname) VALUES (" +
 
                 "'" + DropDownList1.SelectedValue + "', " +   // Stateid
-                "'" + DropDownList2.SelectedValue + "', " +   // Districtid
+                //"'" + DropDownList2.SelectedValue + "', " +   // Districtid
                 "N'" + TextBox1.Text + "', " +               // PartyName
                 "'" + waspPath + "', " +                     // PartycolorWASP
                 "'" + waspPath + "', " +                     // PartycolorBRAIN
@@ -175,14 +176,14 @@ public partial class AddBugParty : Page
 
     public void data()
     {
-        if (DropDownList2.SelectedIndex > 0)
+        if (DropDownList1.SelectedIndex > 0)
         {
             //string sql = "SELECT Id, PartyName FROM DistrictWiseBug WHERE idd= '" + DropDownList2.SelectedItem.Value + "'"; 
 
             string sql =
                 "select Id, PartyName from StateSeat " +
                 "where Stateid='" + DropDownList1.SelectedValue + "' "
-            +"and Districtid='" + DropDownList2.SelectedValue + "'";
+            /*+ "and Districtid='" + DropDownList2.SelectedValue + "'"*/;
 
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);

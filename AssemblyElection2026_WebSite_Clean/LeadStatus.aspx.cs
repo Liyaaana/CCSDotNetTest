@@ -260,7 +260,7 @@ public partial class LeadStatus : System.Web.UI.Page
                     Wasp_path = @"X:\2024\ELECTION\ELECTION_NOV24\TEXTURES\RED.png";
                     Brain_path = @"Y:\2025\DelhiElection\WIN&LOSS\RED.png";
                 }
-                else // condn for id = 5
+                else if (dropdown1 == "5")// condn for id = 5
                 {
                     Wasp_path = @"X:\2024\ELECTION\ELECTION_NOV24\TEXTURES\BLACK.PNG";
                     Brain_path = @"Y:\2025\DelhiElection\WIN&LOSS\BLACK.PNG";

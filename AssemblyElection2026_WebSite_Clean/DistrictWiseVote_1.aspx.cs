@@ -34,7 +34,7 @@ using System.Configuration;
         }
         public void grid()
         {
-            string sql = "select * from DistrictWiseBug where idd='" + 1 + "'";
+            string sql = "select * from StateSeat where Districtid='" + 1 + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -48,7 +48,7 @@ using System.Configuration;
         }
         public void grid1()
         {
-            string sql1 = "select * from DistrictWiseBug where idd='" + 2 + "'";
+            string sql1 = "select * from StateSeat where Districtid='" + 2 + "'";
             SqlCommand cmd1 = new SqlCommand(sql1, con);
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
@@ -62,7 +62,7 @@ using System.Configuration;
         }
         public void grid2()
         {
-            string sql2 = "select * from DistrictWiseBug where idd='" + 3 + "'";
+            string sql2 = "select * from StateSeat where Districtid='" + 3 + "'";
             SqlCommand cmd2 = new SqlCommand(sql2, con);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
             DataTable dt2 = new DataTable();
@@ -76,7 +76,7 @@ using System.Configuration;
         }
         public void grid3()
         {
-            string sql3 = "select * from DistrictWiseBug where idd='" + 4 + "'";
+            string sql3 = "select * from StateSeat where Districtid='" + 4 + "'";
             SqlCommand cmd3 = new SqlCommand(sql3, con);
             SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
             DataTable dt3 = new DataTable();
@@ -90,7 +90,7 @@ using System.Configuration;
         }
         public void grid4()
         {
-            string sql4 = "select * from DistrictWiseBug where idd='" + 5 + "'";
+            string sql4 = "select * from StateSeat where Districtid='" + 5 + "'";
             SqlCommand cmd4 = new SqlCommand(sql4, con);
             SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
             DataTable dt4 = new DataTable();
@@ -123,9 +123,14 @@ using System.Configuration;
             {
                 textbox = t1;
             }
-            if (textbox != "" && textbox != " " && textbox != null)
+            //if (textbox != "" && textbox != " " && textbox != null)
+            //{
+            //    totalseats = totalseats + Convert.ToInt32(textbox);
+            //}
+            int value;
+            if (int.TryParse(textbox.Trim(), out value))
             {
-                totalseats = totalseats + Convert.ToInt32(textbox);
+                totalseats = totalseats + value;
             }
 
         }
@@ -145,26 +150,42 @@ using System.Configuration;
 
                 if (textbox != "")
                 {
-                    string update1 = "update DistrictWiseBug set vote='" + textbox + "' where id='" + key + "'";
+                    string update1 = "update StateSeat set vote='" + textbox + "' where id='" + key + "'";
                     SqlCommand cmd41 = new SqlCommand(update1, con);
                     cmd41.ExecuteNonQuery();
                 }
 
             }
             //bar
-            string barheightgd = "select top 1 vote from dbo.DistrictWiseBug where IDD=1 order by vote desc";
+            string barheightgd = "select top 1 vote from dbo.StateSeat where Districtid=1 order by vote desc";
             SqlCommand bar = new SqlCommand(barheightgd, con);
-            int barvalue = (int)bar.ExecuteScalar();
+            //liyana int barvalue = (int)bar.ExecuteScalar();
+            object result2 = bar.ExecuteScalar();
+            int barvalue = 0;
+
+            if (result2 != null && result2 != DBNull.Value)
+            {
+                barvalue = Convert.ToInt32(result2);
+            }
+            /////
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string key = GridView1.DataKeys[i].Value.ToString();
-                string New_seat = "select vote from  dbo.DistrictWiseBug  where Id='" + key + "'";
+                string New_seat = "select vote from  dbo.StateSeat  where Id='" + key + "'";
                 SqlCommand data = new SqlCommand(New_seat, con);
-                int barval = (int)data.ExecuteScalar();
+                //liyana int barval = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int barval = 0;
+
+                if (result != null && result != DBNull.Value)
+                {
+                    barval = Convert.ToInt32(result);
+                }
+                ////
                 if (barvalue > 0)
                 {
                     int bar1 = (barval * 100) / barvalue;
-                    string update11 = "update dbo.DistrictWiseBug  set barheight='" + bar1 + "' where Id='" + key + "'";
+                    string update11 = "update dbo.StateSeat  set barheight='" + bar1 + "' where Id='" + key + "'";
                     SqlCommand cmd411 = new SqlCommand(update11, con);
                     cmd411.ExecuteNonQuery();
                 }
@@ -174,15 +195,30 @@ using System.Configuration;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string key = GridView1.DataKeys[i].Value.ToString();
-                string seatdata = "select vote from DistrictWiseBug where id='" + key + "'";
+                string seatdata = "select vote from StateSeat where id='" + key + "'";
                 SqlCommand data = new SqlCommand(seatdata, con);
-                int newseats = (int)data.ExecuteScalar();
+                //int newseats = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int newseats = 0;
 
-                //string prevdata = "select Pre_yr_seat from DistrictWiseBug where id='" + key + "'";
-                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '1' + "' " + "and PartyName=(select PartyName from DistrictWiseBug where Id='" + key + "')";
+                if (result != null && result != DBNull.Value)
+                {
+                    newseats = Convert.ToInt32(result);
+                }
+
+
+                //string prevdata = "select Pre_yr_seat from StateSeat where id='" + key + "'";
+                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '1' + "' " + "and PartyName=(select PartyName from StateSeat where Id='" + key + "')";
                 SqlCommand data2 = new SqlCommand(prevdata, con);
-                int prevseat = (int)data2.ExecuteScalar();
+                //liyana int prevseat = (int)data2.ExecuteScalar();
+                result2 = data2.ExecuteScalar();
+                int prevseat = 0;
 
+                if (result2 != null && result2 != DBNull.Value)
+                {
+                    prevseat = Convert.ToInt32(result2);
+                }
+                ///////////////
                 if (prevseat > newseats)
                 {
                     int signvalue1 = prevseat - newseats;
@@ -190,7 +226,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowdown.png";
                     string WASPcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
                     string BRAINcolor = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
-                    string updatenew1 = "update DistrictWiseBug set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew1 = "update StateSeat set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew1 = new SqlCommand(updatenew1, con);
                     cmdnew1.ExecuteNonQuery();
                 }
@@ -201,7 +237,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor1 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
                     string BRAINcolor1 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
-                    string updatenew11 = "update DistrictWiseBug set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew11 = "update StateSeat set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew11 = new SqlCommand(updatenew11, con);
                     cmdnew11.ExecuteNonQuery();
                 }
@@ -212,7 +248,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor2 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
                     string BRAINcolor2 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
-                    string updatenew21 = "update DistrictWiseBug set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew21 = "update StateSeat set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew21 = new SqlCommand(updatenew21, con);
                     cmdnew21.ExecuteNonQuery();
                 }
@@ -251,9 +287,14 @@ using System.Configuration;
             {
                 textbox = t1;
             }
-            if (textbox != "" && textbox != " " && textbox != null)
+            //if (textbox != "" && textbox != " " && textbox != null)
+            //{
+            //    totalseats = totalseats + Convert.ToInt32(textbox);
+            //}
+            int value;
+            if (int.TryParse(textbox.Trim(), out value))
             {
-                totalseats = totalseats + Convert.ToInt32(textbox);
+                totalseats = totalseats + value;
             }
 
         }
@@ -273,27 +314,43 @@ using System.Configuration;
 
                 if (textbox != "")
                 {
-                    string update1 = "update DistrictWiseBug set vote='" + textbox + "' where id='" + key + "'";
+                    string update1 = "update StateSeat set vote='" + textbox + "' where id='" + key + "'";
                     SqlCommand cmd41 = new SqlCommand(update1, con);
                     cmd41.ExecuteNonQuery();
                 }
 
             }
             //bar
-            string barheightgd = "select top 1 vote from dbo.DistrictWiseBug where IDD=2 order by vote desc";
+            string barheightgd = "select top 1 vote from dbo.StateSeat where Districtid=2 order by vote desc";
             SqlCommand bar = new SqlCommand(barheightgd, con);
-            int barvalue = (int)bar.ExecuteScalar();
+            //liyana int barvalue = (int)bar.ExecuteScalar();
+            object result2 = bar.ExecuteScalar();
+            int barvalue = 0;
+
+            if (result2 != null && result2 != DBNull.Value)
+            {
+                barvalue = Convert.ToInt32(result2);
+            }
+            /////
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView2.DataKeys[i].Value.ToString();
-                string New_seat = "select vote from  dbo.DistrictWiseBug  where Id='" + key + "'";
+                string New_seat = "select vote from  dbo.StateSeat  where Id='" + key + "'";
                 SqlCommand data = new SqlCommand(New_seat, con);
-                int barval = (int)data.ExecuteScalar();
+                // liyana int barval = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int barval = 0;
+
+                if (result != null && result != DBNull.Value)
+                {
+                    barval = Convert.ToInt32(result);
+                }
+                ////
                 if (barvalue > 0)
                 {
                     int bar1 = (barval * 100) / barvalue;
 
-                    string update11 = "update dbo.DistrictWiseBug  set barheight='" + bar1 + "' where Id='" + key + "'";
+                    string update11 = "update dbo.StateSeat  set barheight='" + bar1 + "' where Id='" + key + "'";
                     SqlCommand cmd411 = new SqlCommand(update11, con);
                     cmd411.ExecuteNonQuery();
                 }
@@ -302,15 +359,28 @@ using System.Configuration;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView2.DataKeys[i].Value.ToString();
-                string seatdata = "select vote from DistrictWiseBug where id='" + key + "'";
+                string seatdata = "select vote from StateSeat where id='" + key + "'";
                 SqlCommand data = new SqlCommand(seatdata, con);
-                int newseats = (int)data.ExecuteScalar();
+                //int newseats = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int newseats = 0;
 
-                //string prevdata = "select Pre_yr_seat from DistrictWiseBug where id='" + key + "'";
-                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '2' + "' " + "and PartyName=(select PartyName from DistrictWiseBug where Id='" + key + "')";
+                if (result != null && result != DBNull.Value)
+                {
+                    newseats = Convert.ToInt32(result);
+                }
+                //string prevdata = "select Pre_yr_seat from StateSeat where id='" + key + "'";
+                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '2' + "' " + "and PartyName=(select PartyName from StateSeat where Id='" + key + "')";
                 SqlCommand data2 = new SqlCommand(prevdata, con);
-                int prevseat = (int)data2.ExecuteScalar();
+                //liyana int prevseat = (int)data2.ExecuteScalar();
+                result2 = data2.ExecuteScalar();
+                int prevseat = 0;
 
+                if (result2 != null && result2 != DBNull.Value)
+                {
+                    prevseat = Convert.ToInt32(result2);
+                }
+                ///////////////
                 if (prevseat > newseats)
                 {
                     int signvalue1 = prevseat - newseats;
@@ -319,7 +389,7 @@ using System.Configuration;
                     string WASPcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
                     string BRAINcolor = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
 
-                    string updatenew1 = "update DistrictWiseBug set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew1 = "update StateSeat set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew1 = new SqlCommand(updatenew1, con);
                     cmdnew1.ExecuteNonQuery();
                 }
@@ -330,7 +400,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor1 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
                     string BRAINcolor1 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
-                    string updatenew11 = "update DistrictWiseBug set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "' ,Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew11 = "update StateSeat set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "' ,Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew11 = new SqlCommand(updatenew11, con);
                     cmdnew11.ExecuteNonQuery();
                 }
@@ -341,7 +411,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor2 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
                     string BRAINcolor2 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
-                    string updatenew21 = "update DistrictWiseBug set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "' ,Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew21 = "update StateSeat set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "' ,Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew21 = new SqlCommand(updatenew21, con);
                     cmdnew21.ExecuteNonQuery();
                 }
@@ -378,9 +448,14 @@ using System.Configuration;
             {
                 textbox = t1;
             }
-            if (textbox != "" && textbox != " " && textbox != null)
+            //if (textbox != "" && textbox != " " && textbox != null)
+            //{
+            //    totalseats = totalseats + Convert.ToInt32(textbox);
+            //}
+            int value;
+            if (int.TryParse(textbox.Trim(), out value))
             {
-                totalseats = totalseats + Convert.ToInt32(textbox);
+                totalseats = totalseats + value;
             }
 
         }
@@ -400,27 +475,43 @@ using System.Configuration;
 
                 if (textbox != "")
                 {
-                    string update1 = "update DistrictWiseBug set vote='" + textbox + "' where id='" + key + "'";
+                    string update1 = "update StateSeat set vote='" + textbox + "' where id='" + key + "'";
                     SqlCommand cmd41 = new SqlCommand(update1, con);
                     cmd41.ExecuteNonQuery();
                 }
 
             }
             //bar
-            string barheightgd = "select top 1 vote from dbo.DistrictWiseBug where IDD=3 order by vote desc";
+            string barheightgd = "select top 1 vote from dbo.StateSeat where Districtid=3 order by vote desc";
             SqlCommand bar = new SqlCommand(barheightgd, con);
-            int barvalue = (int)bar.ExecuteScalar();
+            //liyana int barvalue = (int)bar.ExecuteScalar();
+            object result2 = bar.ExecuteScalar();
+            int barvalue = 0;
+
+            if (result2 != null && result2 != DBNull.Value)
+            {
+                barvalue = Convert.ToInt32(result2);
+            }
+            /////
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView3.DataKeys[i].Value.ToString();
-                string New_seat = "select vote from  dbo.DistrictWiseBug  where Id='" + key + "'";
+                string New_seat = "select vote from  dbo.StateSeat  where Id='" + key + "'";
                 SqlCommand data = new SqlCommand(New_seat, con);
-                int barval = (int)data.ExecuteScalar();
+                //liyana int barval = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int barval = 0;
+
+                if (result != null && result != DBNull.Value)
+                {
+                    barval = Convert.ToInt32(result);
+                }
+                ////
                 if (barvalue > 0)
                 {
                     int bar1 = (barval * 100) / barvalue;
 
-                    string update11 = "update dbo.DistrictWiseBug  set barheight='" + bar1 + "' where Id='" + key + "'";
+                    string update11 = "update dbo.StateSeat  set barheight='" + bar1 + "' where Id='" + key + "'";
                     SqlCommand cmd411 = new SqlCommand(update11, con);
                     cmd411.ExecuteNonQuery();
                 }
@@ -431,14 +522,28 @@ using System.Configuration;
             {
 
                 string key = GridView3.DataKeys[i].Value.ToString();
-                string seatdata = "select vote from DistrictWiseBug where id='" + key + "'";
+                string seatdata = "select vote from StateSeat where id='" + key + "'";
                 SqlCommand data = new SqlCommand(seatdata, con);
-                int newseats = (int)data.ExecuteScalar();
+                //int newseats = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int newseats = 0;
 
-                //string prevdata = "select Pre_yr_seat from DistrictWiseBug where id='" + key + "'";
-                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '3' + "' " + "and PartyName=(select PartyName from DistrictWiseBug where Id='" + key + "')";
+                if (result != null && result != DBNull.Value)
+                {
+                    newseats = Convert.ToInt32(result);
+                }
+                //string prevdata = "select Pre_yr_seat from StateSeat where id='" + key + "'";
+                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '3' + "' " + "and PartyName=(select PartyName from StateSeat where Id='" + key + "')";
                 SqlCommand data2 = new SqlCommand(prevdata, con);
-                int prevseat = (int)data2.ExecuteScalar();
+                //liyana int prevseat = (int)data2.ExecuteScalar();
+                result2 = data2.ExecuteScalar();
+                int prevseat = 0;
+
+                if (result2 != null && result2 != DBNull.Value)
+                {
+                    prevseat = Convert.ToInt32(result2);
+                }
+                ///////////////
 
                 if (prevseat > newseats)
                 {
@@ -447,7 +552,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowdown.png";
                     string WASPcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
                     string BRAINcolor = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
-                    string updatenew1 = "update DistrictWiseBug set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew1 = "update StateSeat set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew1 = new SqlCommand(updatenew1, con);
                     cmdnew1.ExecuteNonQuery();
                 }
@@ -458,7 +563,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor1 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
                     string BRAINcolor1 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
-                    string updatenew11 = "update DistrictWiseBug set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew11 = "update StateSeat set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew11 = new SqlCommand(updatenew11, con);
                     cmdnew11.ExecuteNonQuery();
                 }
@@ -469,7 +574,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor2 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
                     string BRAINcolor2 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
-                    string updatenew21 = "update DistrictWiseBug set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew21 = "update StateSeat set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew21 = new SqlCommand(updatenew21, con);
                     cmdnew21.ExecuteNonQuery();
                 }
@@ -505,9 +610,14 @@ using System.Configuration;
             {
                 textbox = t1;
             }
-            if (textbox != "" && textbox != " " && textbox != null)
+            //if (textbox != "" && textbox != " " && textbox != null)
+            //{
+            //    totalseats = totalseats + Convert.ToInt32(textbox);
+            //}
+            int value;
+            if (int.TryParse(textbox.Trim(), out value))
             {
-                totalseats = totalseats + Convert.ToInt32(textbox);
+                totalseats = totalseats + value;
             }
 
         }
@@ -527,27 +637,43 @@ using System.Configuration;
 
                 if (textbox != "")
                 {
-                    string update1 = "update DistrictWiseBug set vote='" + textbox + "' where id='" + key + "'";
+                    string update1 = "update StateSeat set vote='" + textbox + "' where id='" + key + "'";
                     SqlCommand cmd41 = new SqlCommand(update1, con);
                     cmd41.ExecuteNonQuery();
                 }
 
             }
             //bar
-            string barheightgd = "select top 1 vote from dbo.DistrictWiseBug where IDD=4 order by vote desc";
+            string barheightgd = "select top 1 vote from dbo.StateSeat where Districtid=4 order by vote desc";
             SqlCommand bar = new SqlCommand(barheightgd, con);
-            int barvalue = (int)bar.ExecuteScalar();
+            //liyana int barvalue = (int)bar.ExecuteScalar();
+            object result2 = bar.ExecuteScalar();
+            int barvalue = 0;
+
+            if (result2 != null && result2 != DBNull.Value)
+            {
+                barvalue = Convert.ToInt32(result2);
+            }
+            /////
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView4.DataKeys[i].Value.ToString();
-                string New_seat = "select vote from  dbo.DistrictWiseBug  where Id='" + key + "'";
+                string New_seat = "select vote from  dbo.StateSeat  where Id='" + key + "'";
                 SqlCommand data = new SqlCommand(New_seat, con);
-                int barval = (int)data.ExecuteScalar();
+                //liyana int barval = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int barval = 0;
+
+                if (result != null && result != DBNull.Value)
+                {
+                    barval = Convert.ToInt32(result);
+                }
+                ////
                 if (barvalue > 0)
                 {
                     int bar1 = (barval * 100) / barvalue;
 
-                    string update11 = "update dbo.DistrictWiseBug  set barheight='" + bar1 + "' where Id='" + key + "'";
+                    string update11 = "update dbo.StateSeat  set barheight='" + bar1 + "' where Id='" + key + "'";
                     SqlCommand cmd411 = new SqlCommand(update11, con);
                     cmd411.ExecuteNonQuery();
                 }
@@ -557,15 +683,28 @@ using System.Configuration;
             {
 
                 string key = GridView4.DataKeys[i].Value.ToString();
-                string seatdata = "select vote from DistrictWiseBug where id='" + key + "'";
+                string seatdata = "select vote from StateSeat where id='" + key + "'";
                 SqlCommand data = new SqlCommand(seatdata, con);
-                int newseats = (int)data.ExecuteScalar();
+                //int newseats = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int newseats = 0;
 
-                //string prevdata = "select Pre_yr_seat from DistrictWiseBug where id='" + key + "'";
-                string prevdata ="select Pre_yr_seat from StateSeat " +"where Districtid='" + '4' + "' " +"and PartyName=(select PartyName from DistrictWiseBug where Id='" + key + "')";
+                if (result != null && result != DBNull.Value)
+                {
+                    newseats = Convert.ToInt32(result);
+                }
+                //string prevdata = "select Pre_yr_seat from StateSeat where id='" + key + "'";
+                string prevdata ="select Pre_yr_seat from StateSeat " +"where Districtid='" + '4' + "' " +"and PartyName=(select PartyName from StateSeat where Id='" + key + "')";
                 SqlCommand data2 = new SqlCommand(prevdata, con);
-                int prevseat = (int)data2.ExecuteScalar();
+                //liyana int prevseat = (int)data2.ExecuteScalar();
+                result2 = data2.ExecuteScalar();
+                int prevseat = 0;
 
+                if (result2 != null && result2 != DBNull.Value)
+                {
+                    prevseat = Convert.ToInt32(result2);
+                }
+                ///////////////
                 if (prevseat > newseats)
                 {
                     int signvalue1 = prevseat - newseats;
@@ -573,7 +712,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowdown.png";
                     string WASPcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
                     string BRAINcolor = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
-                    string updatenew1 = "update DistrictWiseBug set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew1 = "update StateSeat set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew1 = new SqlCommand(updatenew1, con);
                     cmdnew1.ExecuteNonQuery();
                 }
@@ -584,7 +723,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor1 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
                     string BRAINcolor1 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
-                    string updatenew11 = "update DistrictWiseBug set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew11 = "update StateSeat set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew11 = new SqlCommand(updatenew11, con);
                     cmdnew11.ExecuteNonQuery();
                 }
@@ -595,7 +734,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor2 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
                     string BRAINcolor2 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
-                    string updatenew21 = "update DistrictWiseBug set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
+                    string updatenew21 = "update StateSeat set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "' where Id='" + key + "'";
                     SqlCommand cmdnew21 = new SqlCommand(updatenew21, con);
                     cmdnew21.ExecuteNonQuery();
                 }
@@ -633,13 +772,17 @@ using System.Configuration;
             {
                 textbox = t1;
             }
-            if (textbox != "" && textbox != " " && textbox != null)
+            //if (textbox != "" && textbox != " " && textbox != null)
+            //{
+            //    totalseats = totalseats + Convert.ToInt32(textbox);
+            //}
+            int value;
+            if (int.TryParse(textbox.Trim(), out value))
             {
-                totalseats = totalseats + Convert.ToInt32(textbox);
+                totalseats = totalseats + value;
             }
 
         }
-
 
         //getting total seat from state for validation*******
 
@@ -656,27 +799,43 @@ using System.Configuration;
 
                 if (textbox != "")
                 {
-                    string update1 = "update DistrictWiseBug set vote='" + textbox + "' where id='" + key + "'";
+                    string update1 = "update StateSeat set vote='" + textbox + "' where id='" + key + "'";
                     SqlCommand cmd41 = new SqlCommand(update1, con);
                     cmd41.ExecuteNonQuery();
                 }
 
             }
             //bar
-            string barheightgd = "select top 1 vote from dbo.DistrictWiseBug where IDD=5 order by vote desc";
+            string barheightgd = "select top 1 vote from dbo.StateSeat where Districtid=5 order by vote desc";
             SqlCommand bar = new SqlCommand(barheightgd, con);
-            int barvalue = (int)bar.ExecuteScalar();
+            //liyana int barvalue = (int)bar.ExecuteScalar();
+            object result2 = bar.ExecuteScalar();
+            int barvalue = 0;
+
+            if (result2 != null && result2 != DBNull.Value)
+            {
+                barvalue = Convert.ToInt32(result2);
+            }
+            /////
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView5.DataKeys[i].Value.ToString();
-                string New_seat = "select vote from  dbo.DistrictWiseBug  where Id='" + key + "'";
+                string New_seat = "select vote from  dbo.StateSeat  where Id='" + key + "'";
                 SqlCommand data = new SqlCommand(New_seat, con);
-                int barval = (int)data.ExecuteScalar();
+                //liyana  int barval = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int barval = 0;
+
+                if (result != null && result != DBNull.Value)
+                {
+                    barval = Convert.ToInt32(result);
+                }
+                ////
                 if (barvalue > 0)
                 {
                     int bar1 = (barval * 100) / barvalue;
 
-                    string update11 = "update dbo.DistrictWiseBug  set barheight='" + bar1 + "' where Id='" + key + "'";
+                    string update11 = "update dbo.StateSeat  set barheight='" + bar1 + "' where Id='" + key + "'";
                     SqlCommand cmd411 = new SqlCommand(update11, con);
                     cmd411.ExecuteNonQuery();
                 }
@@ -685,15 +844,28 @@ using System.Configuration;
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 string key = GridView5.DataKeys[i].Value.ToString();
-                string seatdata = "select vote from DistrictWiseBug where id='" + key + "'";
+                string seatdata = "select vote from StateSeat where id='" + key + "'";
                 SqlCommand data = new SqlCommand(seatdata, con);
-                int newseats = (int)data.ExecuteScalar();
+                //int newseats = (int)data.ExecuteScalar();
+                object result = data.ExecuteScalar();
+                int newseats = 0;
 
-                //string prevdata = "select Pre_yr_seat from DistrictWiseBug where id='" + key + "'";
-                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '5' + "' " + "and PartyName=(select PartyName from DistrictWiseBug where Id='" + key + "')";
+                if (result != null && result != DBNull.Value)
+                {
+                    newseats = Convert.ToInt32(result);
+                }
+                //string prevdata = "select Pre_yr_seat from StateSeat where id='" + key + "'";
+                string prevdata = "select Pre_yr_seat from StateSeat " + "where Districtid='" + '5' + "' " + "and PartyName=(select PartyName from StateSeat where Id='" + key + "')";
                 SqlCommand data2 = new SqlCommand(prevdata, con);
-                int prevseat = (int)data2.ExecuteScalar();
+                //liyana int prevseat = (int)data2.ExecuteScalar();
+                result2 = data2.ExecuteScalar();
+                int prevseat = 0;
 
+                if (result2 != null && result2 != DBNull.Value)
+                {
+                    prevseat = Convert.ToInt32(result2);
+                }
+                ///////////////
                 if (prevseat > newseats)
                 {
                     int signvalue1 = prevseat - newseats;
@@ -701,7 +873,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowdown.png";
                     string WASPcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
                     string BRAINcolor = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\RED.png";
-                    string updatenew1 = "update DistrictWiseBug set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew1 = "update StateSeat set Difference='" + path1 + "',colorWASP='" + WASPcolor + "',colorBRAIN='" + BRAINcolor + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew1 = new SqlCommand(updatenew1, con);
                     cmdnew1.ExecuteNonQuery();
                 }
@@ -712,7 +884,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor1 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
                     string BRAINcolor1 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\DARK_GREEN.png";
-                    string updatenew11 = "update DistrictWiseBug set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew11 = "update StateSeat set Difference='" + path11 + "',colorWASP='" + stcolor1 + "',colorBRAIN='" + BRAINcolor1 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew11 = new SqlCommand(updatenew11, con);
                     cmdnew11.ExecuteNonQuery();
                 }
@@ -723,7 +895,7 @@ using System.Configuration;
                     string Arrowcolor = @"X:\2025\ELECTION\PANCHAYATH\Arrow\Arrowup.png";
                     string stcolor2 = @"X:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
                     string BRAINcolor2 = @"Y:\2025\ELECTION\PANCHAYATH\Arrow\GREY.png";
-                    string updatenew21 = "update DistrictWiseBug set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
+                    string updatenew21 = "update StateSeat set Difference='" + path21 + "',colorWASP='" + stcolor2 + "',colorBRAIN='" + BRAINcolor2 + "',Arrow='" + Arrowcolor + "'  where Id='" + key + "'";
                     SqlCommand cmdnew21 = new SqlCommand(updatenew21, con);
                     cmdnew21.ExecuteNonQuery();
                 }

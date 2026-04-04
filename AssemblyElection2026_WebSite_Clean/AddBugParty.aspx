@@ -101,83 +101,71 @@
         width: 120px;
         font-size: large;
     }
-        .auto-style2 {
-            width: 380px;
-            height: 21px;
-        }
-        .auto-style4 {
-            width: 380px;
-            height: 64px;
-        }
         .auto-style5 {
             width: 380px;
         }
-        .auto-style13 {
-            width: 166px;
-            font-size: large;
-            height: 21px;
-        }
-        .auto-style14 {
-            width: 381px;
-            height: 21px;
-        }
-        .auto-style15 {
-            height: 21px;
-        }
         .auto-style20 {
-            width: 166px;
-            height: 64px;
+            width: 283px;
+            height: 49px;
         }
         .auto-style21 {
-            width: 166px;
+            width: 283px;
         }
-        .auto-style30 {
+        .auto-style44 {
             width: 380px;
-            height: 50px;
+            height: 42px;
         }
-        .auto-style31 {
-            width: 166px;
+        .auto-style45 {
+            width: 283px;
             font-size: large;
-            height: 50px;
+            height: 42px;
         }
-        .auto-style32 {
+        .auto-style52 {
             width: 381px;
-            height: 50px;
+            height: 42px;
         }
-        .auto-style33 {
-            height: 50px;
+        .auto-style53 {
+            height: 42px;
         }
-        .auto-style34 {
+        .auto-style55 {
+            width: 283px;
+            font-size: large;
+            height: 57px;
+        }
+        .auto-style57 {
+            height: 57px;
+        }
+        .auto-style58 {
             width: 380px;
-            height: 46px;
+            height: 57px;
         }
-        .auto-style35 {
-            width: 166px;
-            font-size: large;
-            height: 46px;
-        }
-        .auto-style36 {
+        .auto-style59 {
+            height: 57px;
             width: 381px;
-            height: 46px;
         }
-        .auto-style37 {
-            height: 46px;
-        }
-        .auto-style38 {
+        .auto-style60 {
             width: 380px;
-            height: 14px;
+            height: 55px;
         }
-        .auto-style39 {
-            width: 166px;
+        .auto-style61 {
+            width: 283px;
             font-size: large;
-            height: 14px;
+            height: 55px;
         }
-        .auto-style40 {
+        .auto-style62 {
+            height: 55px;
             width: 381px;
-            height: 14px;
         }
-        .auto-style41 {
-            height: 14px;
+        .auto-style63 {
+            height: 55px;
+        }
+        .auto-style64 {
+            width: 380px;
+            height: 49px;
+        }
+        .auto-style65 {
+            width: 381px;
+            height: 49px;
         }
         </style>
 </asp:Content>
@@ -214,41 +202,25 @@
         </td>
     </tr>
     <tr>
-        <td class="auto-style34">
+        <td class="auto-style60">
             </td>
-        <td class="auto-style35">
-            State           
-        </td>
-        <td class="auto-style36">
+        <td class="auto-style61">
+            State/Bug Name</td>
+        <td class="auto-style62">
             <asp:DropDownList ID="DropDownList1" runat="server"  AutoPostBack="True" Height="37px" Width="355px" 
                 onselectedindexchanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
         </td>
-        <td class="auto-style37">
-            </td>
-    </tr>
-    <tr>
-        <td class="auto-style30">
-            </td>
-        <td class="auto-style31">
-            District           
-        </td>
-        <td class="auto-style32">
-            <asp:DropDownList ID="DropDownList2" runat="server"  AutoPostBack="True" 
-                Height="37px" Width="355px" 
-                onselectedindexchanged="DropDownList2_SelectedIndexChanged">
-            </asp:DropDownList>
-        </td>
-        <td class="auto-style33">
+        <td class="auto-style63">
             </td>
     </tr>
     
     <tr>
-        <td class="auto-style2">
+        <td class="auto-style44">
             </td>
-        <td class="auto-style13">
+        <td class="auto-style45">
             Add Party</td>
-        <td class="auto-style14">
+        <td class="auto-style52">
             <%--<asp:DropDownList ID="DropDownList2" runat="server">
             </asp:DropDownList>--%>
          <asp:TextBox ID="TextBox1" runat="server" AutoComplete="Off" 
@@ -257,9 +229,9 @@
                             ErrorMessage="Only Letters  & Special characters allowed" ValidationExpression="^[a-zA-Z\s\W]+$" Display="Dynamic">
                             </asp:RegularExpressionValidator>--%>
         </td>
-        <td class="auto-style15">
+        <td class="auto-style53">
             </td>
-        <td class="auto-style15">
+        <td class="auto-style53">
             </td>
     </tr>
 <%--    <tr>
@@ -289,29 +261,29 @@
             </td>
     </tr>--%>
     <tr>
-        <td class="auto-style38">
+        <td class="auto-style58">
             </td>
-        <td class="auto-style39">
+        <td class="auto-style55">
             Party Colour </td>
-        <td class="auto-style40">
+        <td class="auto-style59">
            <asp:FileUpload ID="FileUpload1" runat="server" Height="35px" 
                 style="margin-bottom: 0px" Width="355px" /> </td>
-        <td class="auto-style41">
+        <td class="auto-style57">
         
         
             </td>
-        <td class="auto-style41">
+        <td class="auto-style57">
             </td>
     </tr>
     
     <tr>
-        <td class="auto-style4">
+        <td class="auto-style64">
             </td>
         
         
         <td class="auto-style20">
             </td>
-        <td class="style30">
+        <td class="auto-style65">
         
         
             <asp:Button ID="Button1" runat="server" Font-Bold="True" Font-Size="Medium" 
@@ -373,6 +345,4 @@
 </table>
 
 </asp:Content>
-
-
 
